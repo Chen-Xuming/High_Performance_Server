@@ -22,15 +22,15 @@ const char *ip = "114.132.59.100";
 const int port = 12345;
 
 int main(){
-    sockaddr_in client{};
-    client.sin_family = AF_INET;
-    client.sin_port = htons(port);
-    inet_pton(AF_INET, ip, &client.sin_addr);
+    sockaddr_in server{};
+    server.sin_family = AF_INET;
+    server.sin_port = htons(port);
+    inet_pton(AF_INET, ip, &server.sin_addr);
 
     int sock = socket(PF_INET, SOCK_STREAM, 0);
     assert(sock >= 0);
 
-    if(connect(sock, (sockaddr*)&client, sizeof (client)) != -1){
+    if(connect(sock, (sockaddr*)&server, sizeof (server)) != -1){
         char buffer[512];
         printf("connect successful!\n");
         if(recv(sock, buffer, sizeof (buffer), 0) > 0){
