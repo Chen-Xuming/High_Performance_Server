@@ -13,10 +13,11 @@ string str = "hello";
 
 int main(){
     cout << "parent process: pid = " << getpid() << endl;
-    for(int i = 0; i < 2; i++){
+    for(int i = 0; i < 4; i++){
         int ret = fork();
         if(ret == 0){
             cout << "child process: pid = " << getpid() << "  ppid = " << getppid() << "   i = " << i << endl;
+            break;
         }else{
             waitpid(ret, nullptr, 0);
         }
